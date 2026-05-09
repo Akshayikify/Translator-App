@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <title>{{ title }}</title>
+</head>
+<body>
+    {% block start %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group flex-nowrap">
+              <label for="txt">Text:<input type="text" class="form-control" placeholder="Enter a text here" aria-label="text" aria-describedby="addon-wrapping" name="Text"></label>
+            </div>
+            <br>
+            <select name="language" class="form-select" aria-label="language">
+                <option value="kn">Kannada</option>
+                <option value="hi">Hindi</option>
+                <option value="mr">Marati</option>
+            </select>
+            <br>
+            <button class="btn btn-primary" type="submit">Translate</button>
+        </form>
+    {% endblock start %}
+    {% block para %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    {% if translation %}
+                        <p>{{ translation }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endblock para %}
+</body>
+</html>
